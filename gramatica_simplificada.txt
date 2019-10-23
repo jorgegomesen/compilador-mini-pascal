@@ -1,0 +1,22 @@
+tokens ::=  := | true | false | begin | end | if | then | else | var | : | ; | ( | ) | float-lit | int-lit | id |while | do | ; | , | + | - | or | * | / | and | < | > | <= | >= | = | <> | graphic |program| . | [ | ] | array | .. | of | integer | real| boolean
+
+
+
+******************* tokens ***********************
+
+:(=| E) 	|
+.(. | E) 	| 
+<(= | > | E )	|
+>(= | E)	|
+true | false | begin | end | if | then | else | var | ; | ( | ) | float-lit | int-lit | id |while | do | ; | , | + | - | or | * | / | and | = | graphic |program | [ | ] | array | of | integer | real| boolean
+
+
+
+
+****************** Regras novas *************************
+:= | :     	 =>  :(= | E)
+. | ..      	 =>  .(. | E)
+< | <= | <>      =>  <(= | > | E )
+> | >=      	 =>  >(= | E)
+
+E = vazio
