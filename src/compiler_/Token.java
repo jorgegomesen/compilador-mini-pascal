@@ -64,5 +64,6 @@ public class Token {
             OF = 38,
             INTEGER = 39,
             REAL = 40,
-            BOOL = 41;
+            BOOL = 41,
+            EOT = 42;
 }

@@ -41,24 +41,69 @@ public class Scanner {
     }
 
     private boolean isGraphic(char c) {
-//        graphic ::= ! | @ | # | ...
-//        o que fazer com estes três pontos? o prof. quis dizer apenas que 
-//        poderiam haver mais, não?
-        return (c == 33 || c == 35 || c == 64);
+        return (c != -1 && c != 10);
     }
 
     private byte scanToken() {
+//        palavras reservadas e identificadores
         if (isLetter(currentChar)) {
             takeIt();
             while (isLetter(currentChar) || isDigit(currentChar)) {
                 takeIt();
             }
+            switch (currentSpelling.toString()) {
+                case "or":
+                    return Token.OR;
+                case "and":
+                    return Token.AND;
+                case "do":
+                    return Token.DO;
+                case "while":
+                    return Token.WHILE;
+                case "true":
+                    return Token.TRUE;
+                case "false":
+                    return Token.FALSE;
+                case "begin":
+                    return Token.BEGIN;
+                case "end":
+                    return Token.END;
+                case "if":
+                    return Token.IF;
+                case "then":
+                    return Token.THEN;
+                case "else":
+                    return Token.ELSE;
+                case "var":
+                    return Token.VAR;
+                case "program":
+                    return Token.PROGRAM;
+                case "array":
+                    return Token.ARRAY;
+                case "of":
+                    return Token.OF;
+                case "integer":
+                    return Token.INTEGER;
+                case "real":
+                    return Token.REAL;
+                case "boolean":
+                    return Token.BOOL;
+            }
             return Token.IDENTIFIER;
         }
-        if (isDigit(currentChar)) {
+//        INTLIT ou FLOATLIT
+        if (isDigit(currentChar) || currentChar == '.') {
+            boolean is_float = currentChar == '.';
             takeIt();
-            while (isDigit(currentChar)) {
+            while (isDigit(currentChar) || (is_float = (currentChar == '.'))) {
                 takeIt();
+                if (isLetter(currentChar)) {
+//                    invalid intlit or floatlit
+//                    generate an error
+                }
+            }
+            if (is_float) {
+                return Token.FLOATLIT;
             }
             return Token.INTLIT;
         }
@@ -77,34 +122,69 @@ public class Scanner {
                 return Token.DIV;
             case '<':
                 takeIt();
-                if(currentChar == '='){
+                if (currentChar == '=') {
                     takeIt();
                     return Token.LTEQ;
                 }
-                if(currentChar == '>'){
+                if (currentChar == '>') {
                     takeIt();
                     return Token.DIFF;
                 }
                 return Token.LT;
             case '>':
                 takeIt();
-                if(currentChar == '='){
+                if (currentChar == '=') {
                     takeIt();
                     return Token.GTEQ;
                 }
                 takeIt();
-                    return Token.GT;
+                return Token.GT;
             case '=':
                 takeIt();
                 return Token.EQ;
+            case ':':
+                takeIt();
+                if (currentChar == '=') {
+                    takeIt();
+                    return Token.BECOMES;
+                }
+                return Token.COLON;
+            case ';':
+                takeIt();
+                return Token.SEMICOLON;
+            case '(':
+                takeIt();
+                return Token.LPAREN;
+            case ')':
+                takeIt();
+                return Token.RPAREN;
+            case '[':
+                takeIt();
+                return Token.LBRACKET;
+            case ']':
+                takeIt();
+                return Token.RBRACKET;
+            case '\000':
+                return Token.EOT;
             default:
+//                    generate an error
                 return 0;
         }
     }
 
-    private byte scanSeparator() {
-        //       As above
-        return 1;
+    private void scanSeparator() {
+        switch (currentChar) {
+            case '!':
+                takeIt();
+                while (isGraphic(currentChar)) {
+                    takeIt();
+                }
+                take('\n');
+                break;
+            case ' ':
+            case '\n':
+                takeIt();
+        }
     }
 
     public Token scan() {
