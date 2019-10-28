@@ -1,4 +1,7 @@
-tokens ::=  := | true | false | begin | end | if | then | else | var | : | ; | ( | ) | float-lit | int-lit | id |while | do | ; | , | + | - | or | * | / | and | < | > | <= | >= | = | <> | graphic |program| . | [ | ] | array | .. | of | integer | real| boolean
+tokens ::=  := | true | false | begin | end | if | then | else | var | : | ; | ( | 
+) | float-lit | int-lit | id |while | do | , | + | - | or | * | / | and | < | 
+> | <= | >= | = | <> | graphic |program| . | [ | ] | array | .. | of | integer | 
+real | boolean | eot
 
 
 digit ::= 0|1|...|9
@@ -13,12 +16,16 @@ id ::=  | letter | id digit | id letter
 
 graphic ::= ! | @ | # | ...
  
-separator::= tab | space 
+separator::= tab | space | eol
 
+********************** legenda tokens **********************************
+eol ::= end of line
+eot ::= end of text
 
+obs.: o livro adota estes tokens, e parece-me fazer sentido que façamos o mesmo
 
-********************** express Regular **********************************
+********************** expressão Regular **********************************
 
 id ::= letter+digit*
-int-lit::= digit+
-float-lit::= digit+.digit+| digit+. | .digit+
+int-lit ::= digit+
+float-lit ::= digit+.digit+| digit+. | .digit+

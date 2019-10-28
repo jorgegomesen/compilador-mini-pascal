@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package compiler_;
 
 /**
  *
@@ -14,7 +15,7 @@ public class Token {
     public String spelling;
     public int row;
     public int col;
-    
+
     public Token(byte kind, String spelling, int row, int col) {
         this.kind = kind;
         this.spelling = spelling;
