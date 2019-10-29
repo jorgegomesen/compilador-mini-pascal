@@ -1,7 +1,7 @@
 tokens ::=  := | true | false | begin | end | if | then | else | var | : | ; | ( | 
 ) | float-lit | int-lit | id |while | do | , | + | - | or | * | / | and | < | 
 > | <= | >= | = | <> | graphic |program| . | [ | ] | array | .. | of | integer | 
-real | boolean | eot
+real | boolean | eot | eol
 
 
 digit ::= 0|1|...|9
@@ -12,7 +12,15 @@ float-lit ::= int-lit.int-lit| int-lit. | .int-lit
 
 int-lit ::= digit | int-lit digit
 
+bool-lit ::= true | false
+
 id ::=  | letter | id digit | id letter
+
+op-ad ::= + | - | or
+
+op-mul ::= * | / | and
+
+op-rel ::= < | > | <= | >= | = | <>
 
 graphic ::= ! | @ | # | ...
  

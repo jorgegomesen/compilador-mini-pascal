@@ -24,46 +24,55 @@ public class Token {
     }
 
     public final static byte BECOMES = 0, // :=
-            TRUE = 1,
-            FALSE = 2,
-            BEGIN = 3,
-            END = 4,
-            IF = 5,
-            THEN = 6,
-            ELSE = 7,
-            VAR = 8,
-            COLON = 9, // :
-            SEMICOLON = 10, // ;
-            LPAREN = 11, // (
-            RPAREN = 12, // )
-            FLOATLIT = 13,
-            INTLIT = 14,
-            IDENTIFIER = 15,
-            WHILE = 16,
-            DO = 17,
-            COMMA = 18, // ,
-            ADD = 19, // +
-            MINUS = 20, // -
-            OR = 21,
-            MULT = 22, // *
-            DIV = 23, // \
-            AND = 24,
-            LT = 25, // <
-            GT = 26, // >
-            LTEQ = 27, // <=
-            GTEQ = 28, // >=
-            EQ = 29, // =
-            DIFF = 30, // <>
-            GRAPHIC = 31, // !, @, #, ...
-            PROGRAM = 32,
-            DOT = 33, // .
-            LBRACKET = 34, // [
-            RBRACKET = 35, // ]
-            ARRAY = 36,
-            DDOT = 37, // ..
-            OF = 38,
-            INTEGER = 39,
-            REAL = 40,
-            BOOL = 41,
-            EOT = 42;
+//            TRUE = 1,
+//            FALSE = 2,
+            BEGIN = 1,
+            END = 2,
+            IF = 3,
+            THEN = 4,
+            ELSE = 5,
+            VAR = 6,
+            COLON = 7, // :
+            SEMICOLON = 8, // ;
+            LPAREN = 9, // (
+            RPAREN = 10, // )
+            BOOLLIT = 11,
+            FLOATLIT = 12,
+            INTLIT = 13,
+            IDENTIFIER = 14,
+            WHILE = 15,
+            DO = 16,
+            COMMA = 17, // ,
+//            ADD = 18, // +
+//            MINUS = 20, // -
+//            OR = 21,
+//            MULT = 22, // *
+//            DIV = 23, // \
+//            AND = 24,
+            OPAD = 18, // + | - | or
+            OPMUL = 19, // * | / | and
+            LT = 20, // <
+            GT = 21, // >
+            LTEQ = 22, // <=
+            GTEQ = 23, // >=
+            EQ = 24, // =
+            DIFF = 25, // <>
+            GRAPHIC = 26, // !, @, #, ...
+            PROGRAM = 27,
+            DOT = 28, // .
+            LBRACKET = 29, // [
+            RBRACKET = 30, // ]
+            ARRAY = 31,
+            DDOT = 32, // ..
+            OF = 33,
+            INTEGER = 34,
+            REAL = 35,
+            BOOL = 36,
+            EOT = 37;
+
+    @Override
+    public String toString() {
+        return "Token{" + "kind=" + kind + ", spelling=" + spelling + ", row=" + row + ", col=" + col + '}';
+    }
+    
 }
