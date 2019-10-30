@@ -24,8 +24,8 @@ public class Token {
     }
 
     public final static byte BECOMES = 0, // :=
-//            TRUE = 1,
-//            FALSE = 2,
+            //            TRUE = 1,
+            //            FALSE = 2,
             BEGIN = 1,
             END = 2,
             IF = 3,
@@ -43,12 +43,12 @@ public class Token {
             WHILE = 15,
             DO = 16,
             COMMA = 17, // ,
-//            ADD = 18, // +
-//            MINUS = 20, // -
-//            OR = 21,
-//            MULT = 22, // *
-//            DIV = 23, // \
-//            AND = 24,
+            //            ADD = 18, // +
+            //            MINUS = 20, // -
+            //            OR = 21,
+            //            MULT = 22, // *
+            //            DIV = 23, // \
+            //            AND = 24,
             OPAD = 18, // + | - | or
             OPMUL = 19, // * | / | and
             LT = 20, // <
@@ -70,9 +70,49 @@ public class Token {
             BOOL = 36,
             EOT = 37;
 
+    public final static String[] spellings = {
+        "BEGIN",
+        "END",
+        "IF",
+        "THEN",
+        "ELSE",
+        "VAR",
+        "COLON",
+        "SEMICOLON",
+        "LPAREN",
+        "RPAREN",
+        "BOOLLIT",
+        "FLOATLIT",
+        "INTLIT",
+        "IDENTIFIER",
+        "WHILE",
+        "DO",
+        "COMMA",
+        "OPAD",
+        "OPMUL",
+        "LT",
+        "GT",
+        "LTEQ",
+        "GTEQ",
+        "EQ",
+        "DIFF",
+        "GRAPHIC",
+        "PROGRAM",
+        "DOT",
+        "LBRACKET",
+        "RBRACKET",
+        "ARRAY",
+        "DDOT",
+        "OF",
+        "INTEGER",
+        "REAL",
+        "BOOL",
+        "EOT"
+    };
+
     @Override
     public String toString() {
-        return "Token{" + "kind=" + kind + ", spelling=" + spelling + ", row=" + row + ", col=" + col + '}';
+        return "Token{" + " kind=" + spellings[kind-1] + ", spelling=" + spelling + ", row=" + row + ", col=" + col + '}';
     }
-    
+
 }

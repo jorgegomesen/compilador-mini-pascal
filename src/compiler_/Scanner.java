@@ -30,8 +30,6 @@ public class Scanner {
         while (bufferRead.ready()) {
             System.out.println(this.scan());
         }
-        System.out.println(this.scan());
-        System.out.println(this.scan());
     }
 
     private char getNextCharacter() throws IOException {
@@ -49,8 +47,9 @@ public class Scanner {
 
 //    ambos take e takeit buscam o próximo caractere da fonte e armazenam em current_char
     private void take(char expectedChar) throws IOException {
-        if(current_char != '\n')
+        if (current_char != '\n') {
             current_col++;
+        }
         if (current_char == expectedChar) {
             current_spelling.append(current_char);
             current_char = getNextCharacter();
@@ -61,8 +60,9 @@ public class Scanner {
     }
 
     private void takeIt() throws IOException {
-        if(current_char != '\n')
+        if (current_char != '\n') {
             current_col++;
+        }
         current_spelling.append(current_char);
         current_char = getNextCharacter();
     }
@@ -74,7 +74,7 @@ public class Scanner {
 
     private boolean isLetter(char c) {
 //        letter ::= a|b|c|...|z
-        return (c > 96 && c < 123);
+        return (c > 96 && c < 123) || (c > 64 && c < 91);
     }
 
     private boolean isGraphic(char c) {
@@ -128,18 +128,10 @@ public class Scanner {
             return Token.IDENTIFIER;
         }
 //        INTLIT ou FLOATLIT
-        if (isDigit(current_char) || current_char == '.') {
-            boolean is_float = current_char == '.';
+        if (isDigit(current_char)) {
             takeIt();
-            while (isDigit(current_char) || (is_float = (current_char == '.'))) {
+            while (isDigit(current_char)) {
                 takeIt();
-                if (isLetter(current_char)) {
-                    Error.lexical(current_row, current_col, new StringBuffer("<int-lit> ou <float-lit>"),
-                            new StringBuffer("<identifier>"));
-                }
-            }
-            if (is_float) {
-                return Token.FLOATLIT;
             }
             return Token.INTLIT;
         }
@@ -197,6 +189,13 @@ public class Scanner {
                 return Token.RBRACKET;
             case '\000':
                 return Token.EOT;
+            case '.':
+                takeIt();
+                if (current_char == '.') {
+                    takeIt();
+                    return Token.DDOT;
+                }
+                return Token.DOT;
             default:
                 Error.lexical(current_row, current_col, new StringBuffer("símbolo válido"),
                         new StringBuffer(current_char + ""));
@@ -209,6 +208,7 @@ public class Scanner {
             case '!':
                 takeIt();
                 while (isGraphic(current_char)) {
+//                    System.out.println((int)current_char);
                     takeIt();
                 }
                 take('\n');
