@@ -11,10 +11,10 @@ var
 ; 
 ( 
 ) 
-float-lit 
-int-lit 
-id 
-while 
+float-lit
+int-lit
+id
+while
 do 
 ; 
 , 

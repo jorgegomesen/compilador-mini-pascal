@@ -43,12 +43,6 @@ public class Token {
             WHILE = 15,
             DO = 16,
             COMMA = 17, // ,
-            //            ADD = 18, // +
-            //            MINUS = 20, // -
-            //            OR = 21,
-            //            MULT = 22, // *
-            //            DIV = 23, // \
-            //            AND = 24,
             OPAD = 18, // + | - | or
             OPMUL = 19, // * | / | and
             LT = 20, // <
@@ -71,6 +65,7 @@ public class Token {
             EOT = 37;
 
     public final static String[] spellings = {
+        "BECOMES",
         "BEGIN",
         "END",
         "IF",
@@ -112,7 +107,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token{" + " kind=" + spellings[kind] + ", spelling=" + spelling + ", row=" + row + ", col=" + col + '}';
+        return "Token{" + " kind=" + spellings[kind] + ", \tspelling=" + spelling + ", \trow=" + row + ", col=" + col + '}';
     }
 
 }

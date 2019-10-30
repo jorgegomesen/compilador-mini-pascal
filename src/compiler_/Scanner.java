@@ -26,10 +26,6 @@ public class Scanner {
         this.current_col = 1;
         this.bufferRead = bufferRead;
         this.current_char = getNextCharacter();
-
-        while (bufferRead.ready()) {
-            System.out.println(this.scan());
-        }
     }
 
     private char getNextCharacter() throws IOException {
@@ -127,7 +123,7 @@ public class Scanner {
             }
             return Token.IDENTIFIER;
         }
-//        INTLIT ou FLOATLIT
+//        INTLIT
         if (isDigit(current_char)) {
             takeIt();
             while (isDigit(current_char)) {
@@ -224,7 +220,8 @@ public class Scanner {
 
     public Token scan() throws IOException {
         int col;
-        while (current_char == '!' || current_char == ' ' || current_char == '\n') {
+        while (current_char == '!' || current_char == ' ' || current_char == '\n'
+                || current_char == '\t') {
             scanSeparator();
         }
         col = current_col;
