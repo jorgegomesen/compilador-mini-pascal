@@ -86,9 +86,9 @@ public class Scanner {
             }
             switch (current_spelling.toString()) {
                 case "or":
-                    return Token.OPAD;
+                    return Token.OR;
                 case "and":
-                    return Token.OPMUL;
+                    return Token.AND;
                 case "do":
                     return Token.DO;
                 case "while":
@@ -133,13 +133,17 @@ public class Scanner {
         }
         switch (current_char) {
             case '+':
+                takeIt();
+                return Token.ADD;
             case '-':
                 takeIt();
-                return Token.OPAD;
+                return Token.MINUS;
             case '*':
+                takeIt();
+                return Token.MULT;
             case '/':
                 takeIt();
-                return Token.OPMUL;
+                return Token.DIV;
             case '<':
                 takeIt();
                 if (current_char == '=') {
@@ -185,6 +189,8 @@ public class Scanner {
                 return Token.RBRACKET;
             case '\000':
                 return Token.EOT;
+            case '\n':
+                
             case '.':
                 takeIt();
                 if (current_char == '.') {
@@ -207,7 +213,6 @@ public class Scanner {
             case '!':
                 takeIt();
                 while (isGraphic(current_char)) {
-//                    System.out.println((int)current_char);
                     takeIt();
                 }
                 take('\n');
