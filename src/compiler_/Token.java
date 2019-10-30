@@ -112,7 +112,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return "Token{" + " kind=" + spellings[kind-1] + ", spelling=" + spelling + ", row=" + row + ", col=" + col + '}';
+        return "Token{" + " kind=" + spellings[kind] + ", spelling=" + spelling + ", row=" + row + ", col=" + col + '}';
     }
 
 }

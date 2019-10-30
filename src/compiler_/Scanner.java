@@ -196,6 +196,9 @@ public class Scanner {
                     return Token.DDOT;
                 }
                 return Token.DOT;
+            case ',':
+                takeIt();
+                return Token.COMMA;
             default:
                 Error.lexical(current_row, current_col, new StringBuffer("símbolo válido"),
                         new StringBuffer(current_char + ""));

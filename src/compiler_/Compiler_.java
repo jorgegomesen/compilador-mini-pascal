@@ -21,7 +21,7 @@ public class Compiler_ {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        File file = new File("Arquivos_Para_testes/test.txt");
+        File file = new File("Arquivos_Para_testes/teste1.txt");
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
