@@ -1,4 +1,3 @@
 sdffsafasdfdasfadsfasdf 123123131 1hgfhgf
 ! opa, isso é um comentário
-if(a>b) .........
-! acho que o comentário anterior funfou, hahaha
+if(a>b) ......... !
