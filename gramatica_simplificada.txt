@@ -6,40 +6,26 @@ float-lit | int-lit | id |while | do | ; | , | + | - | or | * | / | and | < |
 
 
 ******************* gramática ***********************
+OBS.: as palavras reservadas já estão sendo verificadas no identifier
 <symbol>    ::=  <separator>*<token>
 <separator> ::=  ! <graphic>*(blank|eol|tab)
 <token>     ::=  :(=|ε) | 
                  .(.|<digit>+|ε) | 
                  <(=|>|ε) | 
                  >(=|ε) | 
-                 true | 
-                 false | 
-                 begin | 
-                 end | 
-                 if | 
-                 then | 
-                 else | 
-                 var | 
                  ; | 
                  ( | 
                  ) | 
                  <digit>(<digit>*(.<digit>+|.|ε)) |  
                  <letter>(<letter>|<digit>)* |
-                 while | 
-                 do | 
                  , | 
                  + | 
                  - | 
-                 or | 
                  * | 
                  / | 
-                 and | 
                  = |
-                 program | 
                  [ | 
                  ] | 
-                 array | 
-                 of | 
                  integer | 
                  real | 
                  bool |
