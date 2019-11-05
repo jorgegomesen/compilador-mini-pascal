@@ -29,14 +29,14 @@ public class Scanner {
     }
 
     private char getNextCharacter() throws IOException {
-        char new_token;
+        char next_character;
         if (bufferRead.ready()) {
-            new_token = (char) bufferRead.read();
-            if (new_token == '\n') {
+            next_character = (char) bufferRead.read();
+            if (next_character == '\n') {
                 current_row++;
                 this.current_col = 1;
             }
-            return new_token;
+            return next_character;
         }
         return '\000';
     }
@@ -129,6 +129,10 @@ public class Scanner {
             while (isDigit(current_char)) {
                 takeIt();
             }
+            if (isLetter(current_char)) {
+                Error.lexical(current_row, current_col, new StringBuffer("Número"),
+                        new StringBuffer("Letra"));
+            }
             return Token.INTLIT;
         }
         switch (current_char) {
@@ -190,7 +194,7 @@ public class Scanner {
             case '\000':
                 return Token.EOT;
             case '\n':
-                
+
             case '.':
                 takeIt();
                 if (current_char == '.') {
