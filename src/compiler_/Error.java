@@ -18,4 +18,8 @@ public class Error {
                 expected_token, current_token));
     }
 
+    static void syntatic(StringBuffer expected_token, StringBuffer current_token) {
+        throw new RuntimeException(String.format("Error: %s expected here, but got %s", expected_token, current_token));
+    }
+
 }
