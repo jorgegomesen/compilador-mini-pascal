@@ -129,10 +129,6 @@ public class Scanner {
             while (isDigit(current_char)) {
                 takeIt();
             }
-            if (isLetter(current_char)) {
-                Error.lexical(current_row, current_col, new StringBuffer("Número"),
-                        new StringBuffer("Letra"));
-            }
             return Token.INTLIT;
         }
         switch (current_char) {
