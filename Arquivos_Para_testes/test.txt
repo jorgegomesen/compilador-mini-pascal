@@ -4,4 +4,3 @@ sdffsafasdfdasfadsfasdf 123123131 !1hgfhgf
 if(a>b) ......... !
 5000a
 2..2
-6000b
