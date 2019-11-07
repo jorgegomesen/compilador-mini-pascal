@@ -1,0 +1,94 @@
+******************* relação de tokens ***********************
+
+  := | true | false | begin | end | if | then | else | var | : | ; | ( | ) | 
+float-lit | int-lit | id |while | do | ; | , | + | - | or | * | / | and | < | 
+> | <= | >= | = | <> |program| . | [ | ] | array | .. | of | integer | real| boolean
+
+
+******************* gramática ***********************
+OBS.: as palavras reservadas já estão sendo verificadas no identifier
+<symbol>    ::=  <separator>*<token>
+<separator> ::=  ! <graphic>*(blank|eol|tab)
+<token>     ::=  :(=|ε) | 
+                 .(.|<digit>+|ε) | 
+                 <(=|>|ε) | 
+                 >(=|ε) | 
+                 ; | 
+                 ( | 
+                 ) | 
+                 <digit>(<digit>*(.<digit>+|.|ε)) |  
+                 <letter>(<letter>|<digit>)* |
+                 , | 
+                 + | 
+                 - | 
+                 * | 
+                 / | 
+                 = |
+                 [ | 
+                 ] | 
+                 integer | 
+                 real | 
+                 bool |
+                 eot
+<graphic>   ::=  qualquer caractere gráfico
+
+
+
+<program>           ::= program <id> ; <body>.
+<body>              ::= ((<declaration>;(<declaration>;)*) | ε)<compost-command>
+<compost-command>   ::= begin <commands-list> end
+<declaration>       ::= var <ids-list> : <type>
+<commands-list>     ::= (<command>;(<command>;)*) | ε
+<command>           ::= (<variable> := <expression>) |
+                        <conditional> |
+                        <iterative> |
+                        <compost-command>
+<type>              ::= <aggregate-type> |
+                        <simple-type>
+<aggregate-type>    ::= array[<literal>..<literal>] of <type>
+<simple-type>       ::= integer |
+                        real |
+                        boolean
+<conditional>       ::= if <expression> then <command> ( else <command> | ε)
+<iterative>         ::= while <expression> do <command>
+<expression>        ::= <simple-expression> |
+                        <simple-expression> <rel-op> <simple-expression>
+<simple-expression> ::= <term>(<ad-op><term>)*
+<id>                ::= <letter>(<letter> | <digit>)*
+<ids-list>          ::= <id>(,<id>)*
+<selector>          ::= ("[" <expression> "]"("[" <expression> "]")*) | ε
+<variable>          ::= <id><selector>
+<term>              ::= <factor>(<mul-op><factor>)*
+<factor>            ::= <variable> |
+                        <literal> |
+                        "(" <expression> ")"
+<literal>           ::= <bool-lit> |
+                        <int-lit> |
+                        <float-lit>
+<bool-lit>          ::= true |
+                        false
+<int-lit>           ::= <digit>+
+<float-lit>         ::= <int-lit>.<int-lit> |
+                        <int-lit>. |
+                        .<int-lit>
+
+******************* tokens ***********************
+
+:(=| E) 	|
+.(. | E) 	| 
+<(= | > | E )	|
+>(= | E)	|
+true | false | begin | end | if | then | else | var | ; | ( | ) | float-lit | 
+int-lit | id |while | do | ; | , | + | - | or | * | / | and | = |
+program | [ | ] | array | of | integer | real| boolean
+
+
+
+
+****************** Regras novas *************************
+:= | :     	 =>  :(= | E)
+. | ..      	 =>  .(. | E)
+< | <= | <>      =>  <(= | > | E )
+> | >=      	 =>  >(= | E)
+
+E = vazio
