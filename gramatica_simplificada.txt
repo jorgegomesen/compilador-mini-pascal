@@ -35,11 +35,14 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
 
 
 <program>           ::= program <id> ; <body>.
-<body>              ::= ((<declaration>;(<declaration>;)*) | ε)<compost-command>
+<body>              ::= <declarations><compost-command>
 <compost-command>   ::= begin <commands-list> end
+<declarations>      ::= <declaration>;(<declaration>;)* | 
+                        ε
 <declaration>       ::= var <ids-list> : <type>
-<commands-list>     ::= (<command>;(<command>;)*) | ε
-<command>           ::= (<variable> := <expression>) |
+<commands-list>     ::= <command>;(<command>;)* | 
+                        ε
+<command>           ::= <variable> := <expression> |
                         <conditional> |
                         <iterative> |
                         <compost-command>
@@ -51,8 +54,7 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
                         boolean
 <conditional>       ::= if <expression> then <command> ( else <command> | ε)
 <iterative>         ::= while <expression> do <command>
-<expression>        ::= <simple-expression> |
-                        <simple-expression> <rel-op> <simple-expression>
+<expression>        ::= <simple-expression>(<rel-op> <simple-expression> | ε) 
 <simple-expression> ::= <term>(<ad-op><term>)*
 <id>                ::= <letter>(<letter> | <digit>)*
 <ids-list>          ::= <id>(,<id>)*
