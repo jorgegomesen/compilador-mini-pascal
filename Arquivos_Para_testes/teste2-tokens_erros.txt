@@ -1,7 +1,9 @@
+!TESTE 2 LÉXICO
 
-:=   false d 
+
+:=   false d  OÓ
 true
-false
+false   Eé
 begin 
 end 
 if 
