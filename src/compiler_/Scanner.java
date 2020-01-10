@@ -26,6 +26,7 @@ public class Scanner {
         this.current_col  = 1;
         this.bufferRead   = bufferRead;
         this.current_char = getNextCharacter();
+         current_spelling = new StringBuffer("");
     }
 
     private char getNextCharacter() throws IOException {
@@ -63,14 +64,15 @@ public class Scanner {
             current_col++;
         }
         
-        if((current_char == '\r')||(current_char == '\n'))  // caso chegue ao final da linha ele pula para a proxima e cria um novo
+        /*if((current_char == '\r')||(current_char == '\n'))  // caso chegue ao final da linha ele pula para a proxima e cria um novo
         {                         // buffer para o token seguinte
             current_spelling = new StringBuffer("");
         }
-        
+        */
        
         
         current_spelling.append(current_char);  
+        
         current_char = getNextCharacter();
     }
 

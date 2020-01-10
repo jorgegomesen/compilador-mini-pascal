@@ -1,5 +1,6 @@
+! LEXICO 1 - TESTE TOKENS EM SEQUÊNCIA
 
-:= and   
+:= and   !sfsdfjlsdf
 array
 begin
 boolean
