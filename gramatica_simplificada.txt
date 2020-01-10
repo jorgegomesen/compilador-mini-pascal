@@ -58,7 +58,7 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
 <simple-expression> ::= <term>(<ad-op><term>)*
 <id>                ::= <letter>(<letter> | <digit>)*
 <ids-list>          ::= <id>(,<id>)*
-<selector>          ::= ("[" <expression> "]"("[" <expression> "]")*) | ε
+<selector>          ::= "[" <expression> "]"("[" <expression> "]")* | ε
 <variable>          ::= <id><selector>
 <term>              ::= <factor>(<mul-op><factor>)*
 <factor>            ::= <variable> |
@@ -70,8 +70,7 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
 <bool-lit>          ::= true |
                         false
 <int-lit>           ::= <digit>+
-<float-lit>         ::= <int-lit>.<int-lit> |
-                        <int-lit>. |
+<float-lit>         ::= <int-lit>.(<int-lit> | ε) |
                         .<int-lit>
 
 ******************* tokens ***********************
