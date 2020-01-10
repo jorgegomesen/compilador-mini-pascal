@@ -21,8 +21,8 @@ public class Compiler_ {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        File file = new File("Arquivos_Para_testes/teste-tokens.txt");
-        //File file = new File("Arquivos_Para_testes/test.txt");
+        //File file = new File("Arquivos_Para_testes/teste-tokens.txt");
+        File file = new File("Arquivos_Para_testes/teste-tokens-em-sequencia.txt");
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);

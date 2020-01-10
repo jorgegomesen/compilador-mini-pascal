@@ -63,10 +63,11 @@ public class Scanner {
             current_col++;
         }
         
-        if(current_char == '\r')  // caso chegue ao final da linha ele pula para a proxima e cria um novo
+        if((current_char == '\r')||(current_char == '\n'))  // caso chegue ao final da linha ele pula para a proxima e cria um novo
         {                         // buffer para o token seguinte
             current_spelling = new StringBuffer("");
         }
+        
        
         
         current_spelling.append(current_char);  

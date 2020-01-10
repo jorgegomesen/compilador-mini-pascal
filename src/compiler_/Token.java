@@ -117,12 +117,11 @@ public class Token {
     @Override
     public String toString() 
     {
-        String linha = String.format("%-6s%-7s%-11s%-12s%-12s%-7s%-3s%-2s%-1s%-2s", "Token{", " kind: ",spellings[kind],", spelling: ",spelling,", row= ",row,", col= ",col," }");
-        //                                                  %-5d%-5d%-12s
-//String linha = String.format("%-8s%05.2f", "Token{", " kind= ", 5.0);
+        String linha = String.format("%-6s%-7s%-11s%-12s%-13s%-7s%-3s%-3s%-3s%-2s", "Token{", " kind: ",spellings[kind],", spelling: ",spelling,", row= ",row,", col= ",col,"}");
+       
         //System.out.print(linha+"\n");
         return linha;
-        //return "Token{" + " kind= " + spellings[kind] + ", spelling= " + spelling + ", \trow= " + row + ", col= " + col + '}';
+        
     }
 
 }
