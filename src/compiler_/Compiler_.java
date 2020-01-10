@@ -36,6 +36,7 @@ public class Compiler_ {
         
         System.out.println(scanner.scan());
         System.out.println(scanner.scan());
+        System.out.println("\n\nola mundo");
         
         if(!Error.list.isEmpty()){
             int list_length = Error.list.size();
