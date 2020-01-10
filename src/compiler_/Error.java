@@ -13,8 +13,9 @@ package compiler_;
 public class Error {
 
     static void lexical(int row, int col, StringBuffer expected_token, StringBuffer current_token) {
-        throw new RuntimeException(String.format("O analisador léxico identificou um erro em [%d,%d]. "
-                + "Esperava-se encontrar <%s>, porém, foi encontrado <%s>", row, col,
+        throw new RuntimeException(String.format("\nO analisador léxico identificou um erro na linha: %d e"
+                + " Coluna: %d.\n "
+                + "Esperava-se encontrar <%s>, porém, foi encontrado <%s>\n", row, col,
                 expected_token, current_token));
     }
 

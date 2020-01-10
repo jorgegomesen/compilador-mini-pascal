@@ -26,10 +26,17 @@ public class Compiler_ {
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
-
-        while (br.ready()) {
+        System.out.print("\n");
+        //System.out.print(br.lines());
+        while (br.ready()) 
+        {
             System.out.println(scanner.scan());
         }
+  
+        
+        
+        
+        
     }
 
 }

@@ -1,12 +1,13 @@
-:= 
-true 
-false 
+
+:=   false d 
+true
+false
 begin 
 end 
 if 
 then 
 else 
-var  
+var 
 : 
 ; 
 ( 
