@@ -66,7 +66,8 @@ public class Token {
             INTEGER     = 39,   // 
             REAL        = 40,   //
             BOOL        = 41,   //
-            EOT         = 42;   // Fim do arquivo
+            SEPARATOR   = 42, 
+            EOT         = 43;   // Fim do arquivo
 
     public final static String[] spellings = {
         "BECOMES",
@@ -111,15 +112,16 @@ public class Token {
         "INTEGER",
         "REAL",
         "BOOL",
+        "SEPARATOR",
         "EOT",
     };
 
     @Override
     public String toString() 
     {
-        String linha = String.format("%-6s%-7s%-11s%-12s%-13s%-7s%-3s%-3s%-3s%-2s", "Token{", " kind: ",spellings[kind],", spelling: ",spelling,", row= ",row,", col= ",col,"}");
+        String linha = String.format("%-6s%-7s%-11s%-12s%-13s%-7s%-3s%-3s%-3s%-2s", "Token{", 
+                " kind: ", spellings[kind], ", spelling: ", spelling, ", row= ", row, ", col= ", col, "}");
        
-        //System.out.print(linha+"\n");
         return linha;
         
     }

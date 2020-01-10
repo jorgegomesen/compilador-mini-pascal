@@ -22,20 +22,18 @@ public class Scanner {
     private final BufferedReader bufferRead;// 
 
     public Scanner(BufferedReader bufferRead) throws IOException {
-        this.current_row  = 1;
-        this.current_col  = 1;
-        this.bufferRead   = bufferRead;
+        this.current_row = 1;
+        this.current_col = 1;
+        this.bufferRead = bufferRead;
         this.current_char = getNextCharacter();
-         current_spelling = new StringBuffer("");
+        this.current_spelling = new StringBuffer("");
     }
 
     private char getNextCharacter() throws IOException {
         char next_character;
-        if (bufferRead.ready())
-        {
+        if (bufferRead.ready()) {
             next_character = (char) bufferRead.read();
-            if (next_character == '\n') 
-            {
+            if (current_char == '\n') {
                 current_row++;
                 this.current_col = 1;
             }
@@ -59,20 +57,13 @@ public class Scanner {
     }
 
     private void takeIt() throws IOException {
-        if (current_char != '\n')   // Se não encontrar o final da linha incrementa col
+        if (current_char != '\n') // Se não encontrar o final da linha incrementa col
         {
             current_col++;
         }
-        
-        /*if((current_char == '\r')||(current_char == '\n'))  // caso chegue ao final da linha ele pula para a proxima e cria um novo
-        {                         // buffer para o token seguinte
-            current_spelling = new StringBuffer("");
-        }
-        */
-       
-        
-        current_spelling.append(current_char);  
-        
+
+        current_spelling.append(current_char);
+
         current_char = getNextCharacter();
     }
 
@@ -90,11 +81,9 @@ public class Scanner {
         return (c != -1 && c != 10);
     }
 
-    private byte scanToken() throws IOException 
-    {
+    private byte scanToken() throws IOException {
 //        palavras reservadas e identificadores
-        if (isLetter(current_char)) 
-        {
+        if (isLetter(current_char)) {
             takeIt();
             while (isLetter(current_char) || isDigit(current_char)) {
                 takeIt();
@@ -139,16 +128,16 @@ public class Scanner {
             return Token.IDENTIFIER;
         }
 //        INTLIT
-        if (isDigit(current_char)) 
-        {
+        if (isDigit(current_char)) {
             takeIt();
+
             while (isDigit(current_char)) {
                 takeIt();
             }
+            
             return Token.INTLIT;
         }
-        switch (current_char) 
-        {
+        switch (current_char) {
             case '+':
                 takeIt();
                 return Token.ADD;
@@ -207,8 +196,7 @@ public class Scanner {
             case '\000':
                 return Token.EOT;
             case '\n':
-            case '.':
-            {
+            case '.': {
                 takeIt();
                 if (current_char == '.') {
                     takeIt();
@@ -229,44 +217,52 @@ public class Scanner {
     private void scanSeparator() throws IOException {
         switch (current_char) {
             case '!':
-            {
                 takeIt();
-                while (isGraphic(current_char)) 
+                while (isGraphic(current_char)) {
                     takeIt();
+                }
                 take('\n');
-                
-            }break;
+                break;
             case ' ':
-            {
-                takeIt();
-            }break;
-                
             case '\n':
-            {
+            case '\r': // quando chegar no final da linha ele pular para a proxima
                 takeIt();
-            }break;
-            case '\r':  // quando chegar no final da linha ele pular para a proxima
-            {
-                takeIt();
-            }break;
-                
         }
     }
 
     public Token scan() throws IOException {
         int col;
-        while ( current_char == '!' ||   // ! é um caracter para indicar o começo do comentario 
-                current_char == ' ' ||   // espaço 
-                current_char == '\n'||   // final da linha
-                current_char == '\r'||   // final da linha e começo da proxima
-                current_char == '\t')    // tabulação 
+        boolean found_separator = false;
+
+        if (current_char == ' ') {
+           found_separator = true;
+        }
+
+        while (current_char == '!'
+                || // ! é um caracter para indicar o começo do comentario 
+                current_char == ' '
+                || // espaço 
+                current_char == '\n'
+                || // final da linha
+                current_char == '\r'
+                || // final da linha e começo da proxima
+                current_char == '\t') // tabulação 
         {
             scanSeparator();
         }
+        if(found_separator){
+             return new Token(Token.SEPARATOR, "space", current_row, current_col);
+        }
         col = current_col;
         current_spelling = new StringBuffer("");
-        current_kind = scanToken();                     
-        return new Token(current_kind, current_spelling.toString(), current_row, col);
+        
+        current_kind = scanToken();
+        
+        if (current_kind != -1) {
+            return new Token(current_kind, current_spelling.toString(), current_row, col);
+        }
+        current_char = getNextCharacter();
+        return scan();
     }
 
 }
