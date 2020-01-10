@@ -1,7 +1,7 @@
 ! LEXICO 1 - TESTE TOKENS EM SEQUÊNCIA
 
 := and   !sfsdfjlsdf
-array
+array 
 begin
 boolean
 do 
@@ -40,3 +40,5 @@ while
 )
 (
 -
+
+var s = ( 5     + 10) *124;
