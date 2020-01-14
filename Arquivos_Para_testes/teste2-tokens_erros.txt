@@ -1,12 +1,14 @@
-!TESTE 2 LÉXICO
+﻿!TESTE 2 LÉXICO
 
-
+123
 :=   false d  OÓ
 true
 false   Eé
 begin 
-end 
+    end  !	fsdfsdkjfhsj	jhvfhfdjds
 if 
+
+123
 then 
 else 
 var 

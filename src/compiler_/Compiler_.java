@@ -22,7 +22,7 @@ public class Compiler_ {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
 //        File file = new File("Arquivos_Para_testes/teste2-tokens_erros.txt");
-        File file = new File("Arquivos_Para_testes/teste_float.txt");
+        File file = new File("Arquivos_Para_testes/teste3_float.txt");
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
