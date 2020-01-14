@@ -129,10 +129,22 @@ public class Scanner {
         }
 //        INTLIT
         if (isDigit(current_char)) {
-            takeIt();
-
-            while (isDigit(current_char)) {
+//            takeIt();
+            boolean is_float = false;
+            
+            while (isDigit(current_char) || current_char == '.') {
                 takeIt();
+                is_float = (!is_float && (current_char == '.')) || (is_float && !(current_char == '.'));
+            }
+
+            if (!isDigit(current_char) && current_char != ' ' && current_char != '\n' ) {
+                Error.lexical(current_row, current_col, new StringBuffer("Nùmero válido"),
+                        new StringBuffer(current_char + ""));
+                return -1;
+            }
+
+            if (is_float) {
+                return Token.FLOATLIT;
             }
             
             return Token.INTLIT;
@@ -234,10 +246,6 @@ public class Scanner {
         int col;
         boolean found_separator = false;
 
-        if (current_char == ' ') {
-           found_separator = true;
-        }
-
         while (current_char == '!'
                 || // ! é um caracter para indicar o começo do comentario 
                 current_char == ' '
@@ -249,15 +257,19 @@ public class Scanner {
                 current_char == '\t') // tabulação 
         {
             scanSeparator();
+//            if (!found_separator) {
+//                found_separator = true;
+//            }
         }
-        if(found_separator){
-             return new Token(Token.SEPARATOR, "space", current_row, current_col);
-        }
+
+//        if (found_separator) {
+//            return new Token(Token.SEPARATOR, "", current_row, current_col - 1);
+//        }
         col = current_col;
         current_spelling = new StringBuffer("");
-        
+
         current_kind = scanToken();
-        
+
         if (current_kind != -1) {
             return new Token(current_kind, current_spelling.toString(), current_row, col);
         }
