@@ -33,22 +33,21 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
 <graphic>   ::=  qualquer caractere gráfico
 
 
+******************* gramática sintática ***********************
 
 <program>           ::= program <id> ; <body>.
 <body>              ::= <declarations><compost-command>
 <compost-command>   ::= begin <commands-list> end
-<declarations>      ::= <declaration>;(<declaration>;)* | 
-                        ε
+<declarations>      ::= (<declaration>;)*
 <declaration>       ::= var <ids-list> : <type>
-<commands-list>     ::= <command>;(<command>;)* | 
-                        ε
+<commands-list>     ::= (<command>;)*
 <command>           ::= <variable> := <expression> |
                         <conditional> |
                         <iterative> |
                         <compost-command>
 <type>              ::= <aggregate-type> |
                         <simple-type>
-<aggregate-type>    ::= array[<literal>..<literal>] of <type>
+<aggregate-type>    ::= array[intlit..intlit] of <type>
 <simple-type>       ::= integer |
                         real |
                         boolean
@@ -56,22 +55,18 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
 <iterative>         ::= while <expression> do <command>
 <expression>        ::= <simple-expression>(<rel-op> <simple-expression> | ε) 
 <simple-expression> ::= <term>(<ad-op><term>)*
-<id>                ::= <letter>(<letter> | <digit>)*
-<ids-list>          ::= <id>(,<id>)*
-<selector>          ::= "[" <expression> "]"("[" <expression> "]")* | ε
-<variable>          ::= <id><selector>
+<ids-list>          ::= id(,id)*
+<selector>          ::= ("[" <expression> "]")*
+<variable>          ::= id<selector>
 <term>              ::= <factor>(<mul-op><factor>)*
 <factor>            ::= <variable> |
                         <literal> |
                         "(" <expression> ")"
-<literal>           ::= <bool-lit> |
-                        <int-lit> |
+<literal>           ::= boollit |
+                        intlit |
                         <float-lit>
-<bool-lit>          ::= true |
-                        false
-<int-lit>           ::= <digit>+
-<float-lit>         ::= <int-lit>.(<int-lit> | ε) |
-                        .<int-lit>
+<float-lit>         ::= intlit.(intlit | ε) |
+                        .intlit
 
 ******************* tokens ***********************
 

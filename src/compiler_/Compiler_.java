@@ -22,7 +22,7 @@ public class Compiler_ {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
 //        File file = new File("Arquivos_Para_testes/teste2-tokens_erros.txt");
-        File file = new File("Arquivos_Para_testes/teste-tokens-em-sequencia.txt");
+        File file = new File("Arquivos_Para_testes/teste_float.txt");
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
@@ -36,7 +36,6 @@ public class Compiler_ {
         
         System.out.println(scanner.scan());
         System.out.println(scanner.scan());
-        System.out.println("\n\nola mundo");
         
         if(!Error.list.isEmpty()){
             int list_length = Error.list.size();
@@ -46,10 +45,6 @@ public class Compiler_ {
             }
             System.out.println("\n\n");
         }
-  
-        
-        
-        
         
     }
 

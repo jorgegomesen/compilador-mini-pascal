@@ -23,51 +23,50 @@ public class Token {
         this.col = col;
     }
 
-    public final static byte 
-            BECOMES     = 0,    // :=
-            TRUE        = 1,    //
-            FALSE       = 2,    //
-            BEGIN       = 3,    //
-            END         = 4,    //
-            IF          = 5,    //
-            THEN        = 6,    //
-            ELSE        = 7,    //
-            VAR         = 8,    //
-            COLON       = 9,    // :
-            SEMICOLON   = 10,   // ;
-            LPAREN      = 11,   // (
-            RPAREN      = 12,   // )
-            BOOLLIT     = 13,   //
-            FLOATLIT    = 14,   //
-            INTLIT      = 15,   //
-            IDENTIFIER  = 16,   //
-            WHILE       = 17,   //
-            DO          = 18,   //
-            COMMA       = 19,   // ,
-            ADD         = 20,   // +
-            MINUS       = 21,   // -
-            OR          = 22,   // OR
-            MULT        = 23,   // *
-            DIV         = 24,   // /
-            AND         = 25,   // and
-            LT          = 26,   // <
-            GT          = 27,   // >
-            LTEQ        = 28,   // <=
-            GTEQ        = 29,   // >=
-            EQ          = 30,   // =
-            DIFF        = 31,   // <>
-            PROGRAM     = 32,   //
-            DOT         = 33,   // .
-            LBRACKET    = 34,   // [
-            RBRACKET    = 35,   // ]
-            ARRAY       = 36,   //
-            DDOT        = 37,   // ..
-            OF          = 38,   //
-            INTEGER     = 39,   // 
-            REAL        = 40,   //
-            BOOL        = 41,   //
-            SEPARATOR   = 42, 
-            EOT         = 43;   // Fim do arquivo
+    public final static byte BECOMES = 0, // :=
+            TRUE = 1, //
+            FALSE = 2, //
+            BEGIN = 3, //
+            END = 4, //
+            IF = 5, //
+            THEN = 6, //
+            ELSE = 7, //
+            VAR = 8, //
+            COLON = 9, // :
+            SEMICOLON = 10, // ;
+            LPAREN = 11, // (
+            RPAREN = 12, // )
+            BOOLLIT = 13, //
+            INTLIT = 14, //
+            IDENTIFIER = 15, //
+            WHILE = 16, //
+            DO = 17, //
+            COMMA = 18, // ,
+            ADD = 19, // +
+            MINUS = 20, // -
+            OR = 21, // OR
+            MULT = 22, // *
+            DIV = 23, // /
+            AND = 24, // and
+            LT = 25, // <
+            GT = 26, // >
+            LTEQ = 27, // <=
+            GTEQ = 28, // >=
+            EQ = 29, // =
+            DIFF = 30, // <>
+            PROGRAM = 31, //
+            DOT = 32, // .
+            LBRACKET = 33, // [
+            RBRACKET = 34, // ]
+            ARRAY = 35, //
+            DDOT = 36, // ..
+            OF = 37, //
+            INTEGER = 38, // 
+            REAL = 39, //
+            BOOL = 40, //
+            SEPARATOR = 41,
+            EOT = 42, // Fim do arquivo
+            FLOATLIT = 43;   //
 
     public final static String[] spellings = {
         "BECOMES",
@@ -84,7 +83,6 @@ public class Token {
         "LPAREN",
         "RPAREN",
         "BOOLLIT",
-        "FLOATLIT",
         "INTLIT",
         "IDENTIFIER",
         "WHILE",
@@ -114,16 +112,16 @@ public class Token {
         "BOOL",
         "SEPARATOR",
         "EOT",
+        "FLOATLIT"
     };
 
     @Override
-    public String toString() 
-    {
-        String linha = String.format("%-6s%-7s%-11s%-12s%-13s%-7s%-3s%-3s%-3s%-2s", "Token{", 
+    public String toString() {
+        String linha = String.format("%-6s%-7s%-11s%-12s%-13s%-7s%-3s%-3s%-3s%-2s", "Token{",
                 " kind: ", spellings[kind], ", spelling: ", spelling, ", row= ", row, ", col= ", col, "}");
-       
+
         return linha;
-        
+
     }
 
 }

@@ -67,6 +67,10 @@ public class Scanner {
         current_char = getNextCharacter();
     }
 
+    private boolean isSeparator(char c) {
+        return (c == ' ' || c == '\t' || c == '\r' || c == '\n');
+    }
+
     private boolean isDigit(char c) {
 //        digit ::= 0|1|...|9
         return (c > 47 && c < 58);
@@ -129,24 +133,38 @@ public class Scanner {
         }
 //        INTLIT
         if (isDigit(current_char)) {
-//            takeIt();
             boolean is_float = false;
-            
+
             while (isDigit(current_char) || current_char == '.') {
                 takeIt();
-                is_float = (!is_float && (current_char == '.')) || (is_float && !(current_char == '.'));
+                if (current_char == '.') {
+                    if (is_float) {
+                        int current_col_aux = current_col;
+                        while (!isSeparator(current_char)) {
+                            takeIt();
+                        }
+                        Error.lexical(current_row, current_col_aux, new StringBuffer("Float válido"),
+                                new StringBuffer(current_spelling + ""));
+                        return -1;
+                    }
+                    is_float = true;
+                }
             }
 
-            if (!isDigit(current_char) && current_char != ' ' && current_char != '\n' ) {
-                Error.lexical(current_row, current_col, new StringBuffer("Nùmero válido"),
-                        new StringBuffer(current_char + ""));
+            if (!isDigit(current_char) && current_char != ' ' && current_char != '\n') {
+                int current_col_aux = current_col;
+                while (!isSeparator(current_char)) {
+                    takeIt();
+                }
+                Error.lexical(current_row, current_col_aux, new StringBuffer("Nùmero válido"),
+                        new StringBuffer(current_spelling + ""));
                 return -1;
             }
 
             if (is_float) {
                 return Token.FLOATLIT;
             }
-            
+
             return Token.INTLIT;
         }
         switch (current_char) {
@@ -210,6 +228,26 @@ public class Scanner {
             case '\n':
             case '.': {
                 takeIt();
+                boolean is_float = isDigit(current_char);
+
+                while (isDigit(current_char)) {
+                    takeIt();
+                }
+
+                if (!isDigit(current_char) && current_char != ' ' && current_char != '\n') {
+                    int current_col_aux = current_col;
+                    while (!isSeparator(current_char)) {
+                        takeIt();
+                    }
+                    Error.lexical(current_row, current_col_aux, new StringBuffer("Float válido"),
+                            new StringBuffer(current_spelling + ""));
+                    return -1;
+                }
+
+                if (is_float) {
+                    return Token.FLOATLIT;
+                }
+
                 if (current_char == '.') {
                     takeIt();
                     return Token.DDOT;
@@ -221,7 +259,7 @@ public class Scanner {
                 return Token.COMMA;
             default:
                 Error.lexical(current_row, current_col, new StringBuffer("símbolo válido"),
-                        new StringBuffer(current_char + ""));
+                        new StringBuffer(current_spelling + (current_char + "")));
                 return -1;
         }
     }
@@ -244,27 +282,11 @@ public class Scanner {
 
     public Token scan() throws IOException {
         int col;
-        boolean found_separator = false;
 
-        while (current_char == '!'
-                || // ! é um caracter para indicar o começo do comentario 
-                current_char == ' '
-                || // espaço 
-                current_char == '\n'
-                || // final da linha
-                current_char == '\r'
-                || // final da linha e começo da proxima
-                current_char == '\t') // tabulação 
-        {
+        while (current_char == '!' || isSeparator(current_char)) {
             scanSeparator();
-//            if (!found_separator) {
-//                found_separator = true;
-//            }
         }
 
-//        if (found_separator) {
-//            return new Token(Token.SEPARATOR, "", current_row, current_col - 1);
-//        }
         col = current_col;
         current_spelling = new StringBuffer("");
 
@@ -273,6 +295,7 @@ public class Scanner {
         if (current_kind != -1) {
             return new Token(current_kind, current_spelling.toString(), current_row, col);
         }
+        
         current_char = getNextCharacter();
         return scan();
     }
