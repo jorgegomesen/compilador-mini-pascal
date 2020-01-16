@@ -102,8 +102,9 @@ public class Scanner {
                 case "while":
                     return Token.WHILE;
                 case "true":
+                    return Token.TRUE;
                 case "false":
-                    return Token.BOOLLIT;
+                    return Token.FALSE;
                 case "begin":
                     return Token.BEGIN;
                 case "end":
