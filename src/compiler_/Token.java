@@ -36,7 +36,7 @@ public class Token {
             SEMICOLON = 10, // ;
             LPAREN = 11, // (
             RPAREN = 12, // )
-            BOOLLIT = 13, //
+//            BOOLLIT = 13, //
             INTLIT = 14, //
             IDENTIFIER = 15, //
             WHILE = 16, //
@@ -82,7 +82,7 @@ public class Token {
         "SEMICOLON",
         "LPAREN",
         "RPAREN",
-        "BOOLLIT",
+//        "BOOLLIT",
         "INTLIT",
         "IDENTIFIER",
         "WHILE",
