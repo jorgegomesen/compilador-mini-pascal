@@ -35,13 +35,14 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
 
 ******************* gramática sintática ***********************
 
-<program>           ::= program <id> ; <body>.
 <body>              ::= <declarations><compost-command>
+<program>           ::= program <id> ; <body>.
 <compost-command>   ::= begin <commands-list> end
 <declarations>      ::= (<declaration>;)*
 <declaration>       ::= var <ids-list> : <type>
 <commands-list>     ::= (<command>;)*
-<command>           ::= <variable> := <expression> |
+<assignment>        ::= <variable> := <expression>
+<command>           ::= <assignment> |
                         <conditional> |
                         <iterative> |
                         <compost-command>
@@ -64,7 +65,7 @@ OBS.: as palavras reservadas já estão sendo verificadas no identifier
                         "(" <expression> ")"
 <literal>           ::= boollit |
                         intlit |
-                        <float-lit>
+                        floatlit
 <float-lit>         ::= intlit.(intlit | ε) |
                         .intlit
 
