@@ -16,6 +16,10 @@ public class Parser {
     private Token currentToken;
     private Scanner scanner;
 
+    public void errorReporter(String expected_token) {
+        Error.syntatic(new StringBuffer(expected_token), new StringBuffer(currentToken.spelling));
+    }
+
     public void parser(Scanner scanner) throws IOException {
         this.scanner = scanner;
 //        currentToken = scanner.scan();
@@ -28,11 +32,74 @@ public class Parser {
             currentToken = scanner.scan();
             return;
         }
-        Error.syntatic(new StringBuffer(Token.spellings[expectedKind]), new StringBuffer(currentToken.spelling));
+        errorReporter(Token.spellings[expectedKind]);
     }
 
     private void acceptIt() throws IOException {
         currentToken = scanner.scan();
+    }
+
+    private void parseAssignment() throws IOException {
+        parseVariable();
+        accept(Token.BECOMES);
+        parseExpression();
+    }
+
+    private void parseVariable() throws IOException {
+        accept(Token.IDENTIFIER);
+        parseSelector();
+    }
+
+    private void parseSelector() throws IOException {
+        while (currentToken.kind == Token.LBRACKET) {
+            acceptIt();
+            parseExpression();
+            accept(Token.RBRACKET);
+        }
+    }
+
+    private void parseExpression() throws IOException {
+        parseSimpleExpression();
+        switch (currentToken.kind) {
+            case Token.LT:
+            case Token.GT:
+            case Token.LTEQ:
+            case Token.GTEQ:
+            case Token.EQ:
+            case Token.DIFF:
+                acceptIt();
+                parseSimpleExpression();
+        }
+    }
+
+    private void parseSimpleExpression() throws IOException {
+        parseTerm();
+        while (currentToken.kind == Token.ADD || currentToken.kind == Token.MINUS
+                || currentToken.kind == Token.OR) {
+            acceptIt();
+            parseTerm();
+        }
+    }
+
+    private void parseTerm() throws IOException {
+        parseFactor();
+        while (currentToken.kind == Token.MULT || currentToken.kind == Token.DIV
+                || currentToken.kind == Token.AND) {
+            acceptIt();
+            parseFactor();
+        }
+    }
+
+    private void parseFactor() throws IOException {
+        if (currentToken.kind == Token.IDENTIFIER || currentToken.kind == Token.TRUE
+                || currentToken.kind == Token.FALSE
+                || currentToken.kind == Token.INTLIT
+                || currentToken.kind == Token.FLOATLIT
+                || currentToken.kind == Token.LPAREN) {
+            acceptIt();
+            return;
+        }
+        errorReporter("VARIABLE, LITERAL ou (");
     }
 
     private void parseId() throws IOException {
@@ -40,28 +107,72 @@ public class Parser {
             acceptIt();
             return;
         }
-        Error.syntatic(new StringBuffer("IDENTIFIER"), new StringBuffer(currentToken.spelling));
+        errorReporter("IDENTIFIER");
     }
 
-    private void parseCompostCommand() {
+    private void parseCompostCommand() throws IOException {
+        accept(Token.BEGIN);
+        parseCommandsList();
+        accept(Token.END);
 
     }
-
-    private void parseAggregateType(){
+    
+    private void parseCommandsList() throws IOException{
+        while(currentToken.kind == Token.IDENTIFIER || currentToken.kind == Token.IF
+                || currentToken.kind == Token.WHILE || currentToken.kind == Token.BEGIN){
+            parseCommand();
+            accept(Token.SEMICOLON);
+        }
+    }
+    
+    private void parseCommand() throws IOException{
+        switch(currentToken.kind){
+            case Token.IDENTIFIER:
+                acceptIt();
+                parseAssignment();
+                break;
+            case Token.IF:
+                acceptIt();
+                parseConditional();
+                break;
+            case Token.WHILE:
+                acceptIt();
+                parseIterative();
+                break;
+            case Token.BEGIN:
+                acceptIt();
+                parseCompostCommand();
+                break;
+            default:
+                errorReporter("IDENTIFIER, IF, WHILE ou BEGIN");
+        }
+    }
+    
+    private void parseConditional(){
         
     }
     
+    private void parseIterative(){
+        
+    }
+
+    private void parseAggregateType() throws IOException {
+        acceptIt();
+        accept(Token.LBRACKET);
+        accept(Token.INTLIT);
+        accept(Token.DDOT);
+        accept(Token.INTLIT);
+        accept(Token.RBRACKET);
+        accept(Token.OF);
+        /* Revisar o tipo assumido pelo array */
+        parseType();
+    }
+
     private void parseType() throws IOException {
-        switch(currentToken.kind){
+        switch (currentToken.kind) {
             case Token.ARRAY:
                 acceptIt();
-                accept(Token.LBRACKET);
-//                accept(Token.INTLIT);  tem de ser LITERAL
-                accept(Token.DDOT);
-//                accept(Token.INTLIT);  tem de ser LITERAL
-                accept(Token.RBRACKET);
-                accept(Token.OF);
-                parseType(); /* revisar */
+                parseAggregateType();
                 break;
             case Token.INTEGER:
             case Token.REAL:
@@ -69,20 +180,32 @@ public class Parser {
                 acceptIt();
                 break;
             default:
+                errorReporter("ARRAY, INTEGER, REAL ou BOOL");
         }
     }
 
-    private void parseDeclaration() throws IOException {
-        acceptIt();
+    private void parseIdsList() throws IOException {
         accept(Token.IDENTIFIER);
 
         while (currentToken.kind == Token.COMMA) {
             acceptIt();
             accept(Token.IDENTIFIER);
         }
+    }
 
+    private void parseDeclarations() throws IOException {
+        while (currentToken.kind == Token.VAR) {
+            parseDeclaration();
+        }
+        if (currentToken.kind == Token.BEGIN) {
+            parseCompostCommand();
+        }
+    }
+
+    private void parseDeclaration() throws IOException {
+        acceptIt();
+        parseIdsList();
         accept(Token.COLON);
-
         parseType();
     }
 
@@ -94,7 +217,7 @@ public class Parser {
             parseCompostCommand();
             return;
         }
-        Error.syntatic(new StringBuffer("BEGIN"), new StringBuffer(currentToken.spelling));
+        errorReporter("BEGIN");
     }
 
     private void parseProgram() throws IOException {
@@ -109,11 +232,7 @@ public class Parser {
         currentToken = scanner.scan();
         parseProgram();
         if (currentToken.kind != Token.EOT) {
-            Error.syntatic(new StringBuffer("EOT"), new StringBuffer(currentToken.spelling));
+            errorReporter("EOT");
         }
-    }
-
-    private void parseSentence() {
-
     }
 }
