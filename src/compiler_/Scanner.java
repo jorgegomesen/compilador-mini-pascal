@@ -92,7 +92,7 @@ public class Scanner {
             while (isLetter(current_char) || isDigit(current_char)) {
                 takeIt();
             }
-            switch (current_spelling.toString()) {
+            switch (current_spelling.toString().toLowerCase()) {
                 case "or":
                     return Token.OR;
                 case "and":
@@ -283,7 +283,7 @@ public class Scanner {
 
     public Token scan() throws IOException {
         int col;
-
+        
         while (current_char == '!' || isSeparator(current_char)) {
             scanSeparator();
         }
@@ -294,6 +294,7 @@ public class Scanner {
         current_kind = scanToken();
 
         if (current_kind != -1) {
+            System.out.println("Retornou token => " + current_spelling.toString());
             return new Token(current_kind, current_spelling.toString(), current_row, col);
         }
         

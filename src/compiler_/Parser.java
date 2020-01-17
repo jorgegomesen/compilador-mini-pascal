@@ -186,8 +186,10 @@ public class Parser {
     }
 
     private void parseType() throws IOException {
+        System.out.println("entrou no type");
         switch (currentToken.kind) {
             case Token.ARRAY:
+                System.out.println("entrou na condição de array");
                 acceptIt();
                 parseAggregateType();
                 break;
@@ -197,7 +199,7 @@ public class Parser {
                 acceptIt();
                 break;
             default:
-                errorReporter("ARRAY, INTEGER, REAL ou BOOL");
+                errorReporter("ARRAY, INTEGER, REAL ou BOOLEAN");
         }
     }
 
@@ -234,7 +236,7 @@ public class Parser {
             parseCompostCommand();
             return;
         }
-        errorReporter("BEGIN");
+        errorReporter("BEGIN ou VAR");
     }
 
     private void parseProgram() throws IOException {

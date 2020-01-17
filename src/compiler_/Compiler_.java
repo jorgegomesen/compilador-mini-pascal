@@ -27,14 +27,9 @@ public class Compiler_ {
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
         
-        /* Analisador Sintático */
-        Parser parser = new Parser(scanner);
-        parser.parse();
-        /*  */        
+                System.out.print("\n");
         
-//        System.out.print("\n");
-//        
-//        
+        /* Analisador Léxico */     
 //        while (br.ready()) 
 //        {
 //            System.out.println(scanner.scan());                
@@ -42,6 +37,12 @@ public class Compiler_ {
 //        
 //        System.out.println(scanner.scan());
 //        System.out.println(scanner.scan());
+        
+        /* Analisador Sintático */
+        Parser parser = new Parser(scanner);
+        parser.parse();
+        /*  */        
+        
 //        
         if(!Error.list.isEmpty()){
             int list_length = Error.list.size();

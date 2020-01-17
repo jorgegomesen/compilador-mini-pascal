@@ -37,36 +37,36 @@ public class Token {
             LPAREN = 11, // (
             RPAREN = 12, // )
 //            BOOLLIT = 13, //
-            INTLIT = 14, //
-            IDENTIFIER = 15, //
-            WHILE = 16, //
-            DO = 17, //
-            COMMA = 18, // ,
-            ADD = 19, // +
-            MINUS = 20, // -
-            OR = 21, // OR
-            MULT = 22, // *
-            DIV = 23, // /
-            AND = 24, // and
-            LT = 25, // <
-            GT = 26, // >
-            LTEQ = 27, // <=
-            GTEQ = 28, // >=
-            EQ = 29, // =
-            DIFF = 30, // <>
-            PROGRAM = 31, //
-            DOT = 32, // .
-            LBRACKET = 33, // [
-            RBRACKET = 34, // ]
-            ARRAY = 35, //
-            DDOT = 36, // ..
-            OF = 37, //
-            INTEGER = 38, // 
-            REAL = 39, //
-            BOOL = 40, //
-            SEPARATOR = 41,
-            EOT = 42, // Fim do arquivo
-            FLOATLIT = 43;   //
+            INTLIT = 13, //
+            IDENTIFIER = 14, //
+            WHILE = 15, //
+            DO = 16, //
+            COMMA = 17, // ,
+            ADD = 18, // +
+            MINUS = 19, // -
+            OR = 20, // OR
+            MULT = 21, // *
+            DIV = 22, // /
+            AND = 23, // and
+            LT = 24, // <
+            GT = 25, // >
+            LTEQ = 26, // <=
+            GTEQ = 27, // >=
+            EQ = 28, // =
+            DIFF = 29, // <>
+            PROGRAM = 30, //
+            DOT = 31, // .
+            LBRACKET = 32, // [
+            RBRACKET = 33, // ]
+            ARRAY = 34, //
+            DDOT = 35, // ..
+            OF = 36, //
+            INTEGER = 37, // 
+            REAL = 38, //
+            BOOL = 39, //
+            SEPARATOR = 40,
+            EOT = 41, // Fim do arquivo
+            FLOATLIT = 42;   //
 
     public final static String[] spellings = {
         "BECOMES",

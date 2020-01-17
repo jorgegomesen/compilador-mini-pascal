@@ -3,7 +3,7 @@ program teste3 ;
 
 ! LEXICO 1 - TESTE TOKENS EM SEQUÊNCIA
 
-5.5
+var b : BOOLEAN
 .10
 .10.10
 a.a
