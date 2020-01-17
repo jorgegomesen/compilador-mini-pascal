@@ -1,17 +1,15 @@
-program teste3 ;
+! SINTÁTICO 2 - TESTE SINTAXE INVÁLIDA
+program programa1;
+begin
+if 2 > 1
+then
+begin
+x := 3;
 
-
-! LEXICO 1 - TESTE TOKENS EM SEQUÊNCIA
-
-var b : BOOLEAN
-.10
-.10.10
-a.a
-10.10.10
-10.
-10.as
-.10
-10
-sdfasf.43
-:= and   !sfsdfjlsdf
+x = x *2;
+end
+else
+y := 2
+;
+end
 .

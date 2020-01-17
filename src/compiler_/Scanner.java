@@ -7,6 +7,7 @@ package compiler_;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Scanner {
     private int current_col;                // coluna atual
     private StringBuffer current_spelling;  // grafia ou valor atual
     private final BufferedReader bufferRead;// 
+    static ArrayList<Token> tokens = new ArrayList();
 
     public Scanner(BufferedReader bufferRead) throws IOException {
         this.current_row = 1;
@@ -27,6 +29,15 @@ public class Scanner {
         this.bufferRead = bufferRead;
         this.current_char = getNextCharacter();
         this.current_spelling = new StringBuffer("");
+    }
+
+    static Token getToken() {
+        if (!Scanner.tokens.isEmpty()) {
+            Token token = Scanner.tokens.get(0);
+            Scanner.tokens.remove(0);
+            return token;
+        }
+        return null;
     }
 
     private char getNextCharacter() throws IOException {
@@ -152,7 +163,7 @@ public class Scanner {
                 }
             }
 
-            if (!isDigit(current_char) && current_char != ' ' && current_char != '\n') {
+            if (!isDigit(current_char) && current_char != ' ' && current_char != '\n' && current_char != ';') {
                 int current_col_aux = current_col;
                 while (!isSeparator(current_char)) {
                     takeIt();
@@ -162,6 +173,7 @@ public class Scanner {
                 return -1;
             }
 
+//            System.out.println("passou");
             if (is_float) {
                 return Token.FLOATLIT;
             }
@@ -235,7 +247,7 @@ public class Scanner {
                     takeIt();
                 }
 
-                if (!isDigit(current_char) && current_char != ' ' && current_char != '\n') {
+                if (!isDigit(current_char) && current_char != ' ' && current_char != '\n' && current_char != '\000') {
                     int current_col_aux = current_col;
                     while (!isSeparator(current_char)) {
                         takeIt();
@@ -281,9 +293,9 @@ public class Scanner {
         }
     }
 
-    public Token scan() throws IOException {
+    public void scan() throws IOException {
         int col;
-        
+
         while (current_char == '!' || isSeparator(current_char)) {
             scanSeparator();
         }
@@ -294,12 +306,13 @@ public class Scanner {
         current_kind = scanToken();
 
         if (current_kind != -1) {
-            System.out.println("Retornou token => " + current_spelling.toString());
-            return new Token(current_kind, current_spelling.toString(), current_row, col);
+//            System.out.println("Retornou token => " + current_spelling.toString());
+            Scanner.tokens.add(new Token(current_kind, current_spelling.toString(), current_row, col));
+            return;
         }
-        
+
         current_char = getNextCharacter();
-        return scan();
+        scan();
     }
 
 }
