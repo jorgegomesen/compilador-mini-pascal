@@ -26,17 +26,23 @@ public class Compiler_ {
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
-        System.out.print("\n");
         
+        /* Analisador Sintático */
+        Parser parser = new Parser(scanner);
+        parser.parse();
+        /*  */        
         
-        while (br.ready()) 
-        {
-            System.out.println(scanner.scan());                
-        }
-        
-        System.out.println(scanner.scan());
-        System.out.println(scanner.scan());
-        
+//        System.out.print("\n");
+//        
+//        
+//        while (br.ready()) 
+//        {
+//            System.out.println(scanner.scan());                
+//        }
+//        
+//        System.out.println(scanner.scan());
+//        System.out.println(scanner.scan());
+//        
         if(!Error.list.isEmpty()){
             int list_length = Error.list.size();
             System.out.println("\n\n####### ERROS ######");

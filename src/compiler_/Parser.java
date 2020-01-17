@@ -14,17 +14,14 @@ import java.io.IOException;
 public class Parser {
 
     private Token currentToken;
-    private Scanner scanner;
+    private Scanner scanner;  
 
+    public Parser(Scanner scanner) throws IOException {
+        this.scanner = scanner;
+    }
+    
     public void errorReporter(String expected_token) {
         Error.syntatic(new StringBuffer(expected_token), new StringBuffer(currentToken.spelling));
-    }
-
-    public void parser(Scanner scanner) throws IOException {
-        this.scanner = scanner;
-//        currentToken = scanner.scan();
-//        parseSentence();
-//        check that no terminal follows the sentence
     }
 
     private void accept(byte expectedKind) throws IOException {
@@ -91,15 +88,25 @@ public class Parser {
     }
 
     private void parseFactor() throws IOException {
-        if (currentToken.kind == Token.IDENTIFIER || currentToken.kind == Token.TRUE
-                || currentToken.kind == Token.FALSE
-                || currentToken.kind == Token.INTLIT
-                || currentToken.kind == Token.FLOATLIT
-                || currentToken.kind == Token.LPAREN) {
-            acceptIt();
-            return;
+        switch (currentToken.kind) {
+            case Token.IDENTIFIER:
+                acceptIt();
+                parseVariable();
+                break;
+            case Token.TRUE:
+            case Token.FALSE:
+            case Token.INTLIT:
+            case Token.FLOATLIT:
+                acceptIt();
+                break;
+            case Token.LPAREN:
+                acceptIt();
+                parseExpression();
+                accept(Token.RPAREN);
+                break;
+            default:
+                errorReporter("VARIABLE, LITERAL ou (");
         }
-        errorReporter("VARIABLE, LITERAL ou (");
     }
 
     private void parseId() throws IOException {
@@ -116,17 +123,17 @@ public class Parser {
         accept(Token.END);
 
     }
-    
-    private void parseCommandsList() throws IOException{
-        while(currentToken.kind == Token.IDENTIFIER || currentToken.kind == Token.IF
-                || currentToken.kind == Token.WHILE || currentToken.kind == Token.BEGIN){
+
+    private void parseCommandsList() throws IOException {
+        while (currentToken.kind == Token.IDENTIFIER || currentToken.kind == Token.IF
+                || currentToken.kind == Token.WHILE || currentToken.kind == Token.BEGIN) {
             parseCommand();
             accept(Token.SEMICOLON);
         }
     }
-    
-    private void parseCommand() throws IOException{
-        switch(currentToken.kind){
+
+    private void parseCommand() throws IOException {
+        switch (currentToken.kind) {
             case Token.IDENTIFIER:
                 acceptIt();
                 parseAssignment();
@@ -147,13 +154,23 @@ public class Parser {
                 errorReporter("IDENTIFIER, IF, WHILE ou BEGIN");
         }
     }
-    
-    private void parseConditional(){
-        
+
+    private void parseConditional() throws IOException {
+        accept(Token.IF);
+        parseExpression();
+        accept(Token.THEN);
+        parseCommand();
+        if (currentToken.kind == Token.ELSE) {
+            acceptIt();
+            parseCommand();
+        }
     }
-    
-    private void parseIterative(){
-        
+
+    private void parseIterative() throws IOException {
+        accept(Token.WHILE);
+        parseExpression();
+        accept(Token.DO);
+        parseCommand();
     }
 
     private void parseAggregateType() throws IOException {
@@ -228,7 +245,7 @@ public class Parser {
         accept(Token.DOT);
     }
 
-    private void parse() throws IOException {
+    public void parse() throws IOException {
         currentToken = scanner.scan();
         parseProgram();
         if (currentToken.kind != Token.EOT) {
