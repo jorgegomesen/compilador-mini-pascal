@@ -1,0 +1,16 @@
+! TESTE SINTÁTICO - TESTE SINTAXE SEM ERRO
+program programa1;
+begin
+    if 13 > 1 then
+    begin
+        x := 78;
+        x := x *48;
+    end
+    else
+        y := 42;
+end .
+
+
+
+
+

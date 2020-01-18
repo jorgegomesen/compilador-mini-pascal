@@ -1,0 +1,12 @@
+! TESTE SINTÁTICO - TESTE SINTAXE COM ERRO NA LINHA 2
+programa programa1;
+begin
+    if 13 > 1 then
+    begin
+        x := 78;
+        x := x *48;
+    end
+    else
+        y := 42;
+end .
+

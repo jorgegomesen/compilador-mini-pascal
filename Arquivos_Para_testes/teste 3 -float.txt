@@ -1,0 +1,13 @@
+! LEXICO 1 - TESTE TOKENS EM SEQUÊNCIA
+
+5.5
+.10
+.10.10
+a.a
+10.10.10
+10.
+10.as
+.10
+10
+sdfasf.43
+ := and     !sfsdfjlsdf

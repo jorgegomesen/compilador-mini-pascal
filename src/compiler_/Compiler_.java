@@ -21,8 +21,17 @@ public class Compiler_ {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException, Exception {
-//        File file = new File("Arquivos_Para_testes/teste2-tokens_erros.txt");
-        File file = new File("Arquivos_Para_testes/teste3_float.txt");
+        
+    //***********  Testes do Léxico  *********************
+        //File file = new File("Arquivos_Para_testes/teste 1 -tokens-em-sequencia.txt");
+        //File file = new File("Arquivos_Para_testes/teste 2 -tokens_erros.txt");
+        //File file = new File("Arquivos_Para_testes/teste 3 -float.txt"); // está entrando em loop
+        
+    //***********  Testes do Sintático  ********************* 
+       File file = new File("Arquivos_Para_testes/teste 4 -sintatico.txt");
+       //File file = new File("Arquivos_Para_testes/teste 5 -sintatico_erro_1.txt");
+       //File file = new File("Arquivos_Para_testes/teste 6 -sintatico_erro_2.txt");
+    
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
         Scanner scanner = new Scanner(br);
