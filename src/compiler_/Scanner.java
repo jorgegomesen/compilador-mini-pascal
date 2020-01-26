@@ -151,13 +151,14 @@ public class Scanner {
                 takeIt();
                 if (current_char == '.') {
                     if (is_float) {
-                        int current_col_aux = current_col;
-                        while (!isSeparator(current_char)) {
-                            takeIt();
-                        }
-                        Error.lexical(current_row, current_col_aux, new StringBuffer("Float válido"),
-                                new StringBuffer(current_spelling + ""));
-                        return -1;
+//                        int current_col_aux = current_col;
+//                        while (!isSeparator(current_char)) {
+//                            takeIt();
+//                        }
+//                        Error.lexical(current_row, current_col_aux, new StringBuffer("Float válido"),
+//                                new StringBuffer(current_spelling + ""));
+//                        return -1;
+                        break;
                     }
                     is_float = true;
                 }
@@ -265,6 +266,7 @@ public class Scanner {
                     takeIt();
                     return Token.DDOT;
                 }
+
                 return Token.DOT;
             }
             case ',':
@@ -306,7 +308,7 @@ public class Scanner {
         current_kind = scanToken();
 
         if (current_kind != -1) {
-//            System.out.println("Retornou token => " + current_spelling.toString());
+            System.out.println("Retornou token => " + current_spelling.toString());
             Scanner.tokens.add(new Token(current_kind, current_spelling.toString(), current_row, col));
             return;
         }
