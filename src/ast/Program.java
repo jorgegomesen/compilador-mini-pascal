@@ -5,6 +5,7 @@
  */
 package AST;
 
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
@@ -13,15 +14,15 @@ import syntaxAnalisys.Visitor;
  */
 public class Program extends Node {
 
-    public Identifier I;
+    public Token T;
     public Body B;
 
     public void visit(Visitor v) {
         v.visitProgram(this);
     }
 
-    public Program(Identifier I, Body B) {
-        this.I = I;
+    public Program(Token T, Body B) {
+        this.T = T;
         this.B = B;
     }
 }

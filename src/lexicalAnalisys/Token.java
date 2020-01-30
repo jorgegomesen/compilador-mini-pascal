@@ -5,6 +5,8 @@
  */
 package lexicalAnalisys;
 
+import syntaxAnalisys.Visitor;
+
 /**
  * @author adolfo
  * @author jorgec
@@ -22,6 +24,13 @@ public class Token {
         this.row = row;
         this.col = col;
     }
+    
+    public Token(Token token){
+        this.kind = token.kind;
+        this.spelling = token.spelling;
+        this.row = token.row;
+        this.col = token.col;
+    }
 
     public final static byte BECOMES = 0, // :=
             TRUE = 1, //
@@ -36,7 +45,7 @@ public class Token {
             SEMICOLON = 10, // ;
             LPAREN = 11, // (
             RPAREN = 12, // )
-//            BOOLLIT = 13, //
+            //            BOOLLIT = 13, //
             INTLIT = 13, //
             IDENTIFIER = 14, //
             WHILE = 15, //
@@ -82,7 +91,7 @@ public class Token {
         "SEMICOLON",
         "LPAREN",
         "RPAREN",
-//        "BOOLLIT",
+        //        "BOOLLIT",
         "INTLIT",
         "IDENTIFIER",
         "WHILE",
@@ -114,6 +123,10 @@ public class Token {
         "EOT",
         "FLOATLIT"
     };
+
+    public void visit(Visitor v) {
+        v.visitToken(this);
+    }
 
     @Override
     public String toString() {

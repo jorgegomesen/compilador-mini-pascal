@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AST;
+package contextAnalisys;
 
+import AST.*;
 import lexicalAnalisys.Token;
-import syntaxAnalisys.Visitor;
+import syntaxAnalisys.*;
 
 /**
+ *
  * @author adolfo
  * @author jorgec
  */
-public class Identifier extends Node {
-
-    public Token T;
-
-    public void visit(Visitor v) {
-        v.visitIdentifier(this);
-    }
-
-    public Identifier(Token T) {
-        this.T = T;
-    }
+public class Checker {
+    
 }

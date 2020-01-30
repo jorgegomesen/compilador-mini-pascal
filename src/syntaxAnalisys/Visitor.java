@@ -6,6 +6,7 @@
 package syntaxAnalisys;
 
 import AST.*;
+import lexicalAnalisys.Token;
 
 /**
  *
@@ -41,5 +42,6 @@ public interface Visitor {
     public void visitType(Type T);
     public void visitSimpleType(SimpleType ST);
     public void visitVariable(Variable V);
-    public void visitIdentifier(Identifier I);
+//    public void visitIdentifier(Identifier I);
+    public void visitToken(Token T);
 }
