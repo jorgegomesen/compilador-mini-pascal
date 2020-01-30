@@ -180,6 +180,7 @@ public class Parser {
             case Token.FALSE:
             case Token.INTLIT:
             case Token.FLOATLIT:
+//                System.out.println(currentToken.spelling);
                 nodeF = new Literal(acceptIt());
                 break;
             case Token.LPAREN:

@@ -241,7 +241,6 @@ public class Printer implements Visitor {
 
     @Override
     public void visitFactor(Factor F) {
-            System.out.println("tem de entrar aqui");
         if (F != null) {
             F.visit(this);
         }
@@ -382,7 +381,6 @@ public class Printer implements Visitor {
     @Override
     public void visitTerm(Term T) {
         if (T.F != null) {
-            System.out.println("Foi visitar o factor");
             T.F.visit(this);
         }
         if (T.FS != null) {
