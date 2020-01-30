@@ -144,42 +144,22 @@ public class Scanner {
             }
             return Token.IDENTIFIER;
         }
-//        INTLIT
+//        INTLIT e FLOATLIT
         if (isDigit(current_char)) {
-            boolean is_float = false;
-
-            while (isDigit(current_char) || current_char == '.') {
+            takeIt();
+            
+            while (isDigit(current_char)) {
                 takeIt();
-                if (current_char == '.') {
-                    if (is_float) {
-//                        int current_col_aux = current_col;
-//                        while (!isSeparator(current_char)) {
-//                            takeIt();
-//                        }
-//                        Error.lexical(current_row, current_col_aux, new StringBuffer("Float válido"),
-//                                new StringBuffer(current_spelling + ""));
-//                        return -1;
-                        break;
-                    }
-                    is_float = true;
-                }
             }
 
-            if (!isDigit(current_char) && current_char != ' ' && current_char != '\n' && current_char != ';') {
-                int current_col_aux = current_col;
-                while (!isSeparator(current_char)) {
+            if (current_char == '.') {
+                takeIt();
+                while (isDigit(current_char)) {
                     takeIt();
                 }
-                Error.lexical(current_row, current_col_aux, new StringBuffer("Nùmero válido"),
-                        new StringBuffer(current_spelling + ""));
-                return -1;
-            }
-
-//            System.out.println("passou");
-            if (is_float) {
                 return Token.FLOATLIT;
             }
-
+            
             return Token.INTLIT;
         }
         switch (current_char) {
@@ -243,31 +223,20 @@ public class Scanner {
             case '\n':
             case '.': {
                 takeIt();
-                boolean is_float = isDigit(current_char);
-
-                while (isDigit(current_char)) {
-                    takeIt();
-                }
-
-                if (!isDigit(current_char) && current_char != ' ' && current_char != '\n' && current_char != '\000') {
-                    int current_col_aux = current_col;
-                    while (!isSeparator(current_char)) {
-                        takeIt();
-                    }
-                    Error.lexical(current_row, current_col_aux, new StringBuffer("Float válido"),
-                            new StringBuffer(current_spelling + ""));
-                    return -1;
-                }
-
-                if (is_float) {
-                    return Token.FLOATLIT;
-                }
-
+                
                 if (current_char == '.') {
                     takeIt();
                     return Token.DDOT;
                 }
-
+                
+                if(isDigit(current_char)){
+                    takeIt();
+                    while(isDigit(current_char)){
+                        takeIt();
+                    }
+                    return Token.FLOATLIT;
+                }
+                
                 return Token.DOT;
             }
             case ',':
@@ -309,7 +278,6 @@ public class Scanner {
         current_kind = scanToken();
 
         if (current_kind != -1) {
-            System.out.println("Retornou token => " + current_spelling.toString());
             Scanner.tokens.add(new Token(current_kind, current_spelling.toString(), current_row, col));
             return;
         }

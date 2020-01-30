@@ -1,4 +1,4 @@
- ﻿! TESTE 2 LÉXICO
+ ! TESTE 2 LÉXICO
 2
 123
 :=   false d  OÓ

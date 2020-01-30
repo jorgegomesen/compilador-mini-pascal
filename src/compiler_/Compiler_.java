@@ -28,8 +28,8 @@ public class Compiler_ {
 
         //***********  Testes do Léxico  *********************
         //File file = new File("Arquivos_Para_testes/teste 1 -tokens-em-sequencia.txt");
-        //File file = new File("Arquivos_Para_testes/teste 2 -tokens_erros.txt");
-        File file = new File("Arquivos_Para_testes/teste 3 -float.txt"); // está entrando em loop
+        File file = new File("Arquivos_Para_testes/teste 2 -tokens_erros.txt");
+//        File file = new File("Arquivos_Para_testes/teste 3 -float.txt"); // está entrando em loop
 
         //***********  Testes do Sintático  ********************* 
 //       File file = new File("Arquivos_Para_testes/teste 4 -sintatico.txt");
