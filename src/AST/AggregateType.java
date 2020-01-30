@@ -5,11 +5,11 @@
  */
 package AST;
 
-import compiler_.Token;
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class AggregateType extends Type {

@@ -8,24 +8,25 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class VariableDeclaration extends Declaration {
+
     public IdsList IL;
     public Type T;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitVariableDeclaration(this);
     }
-    
-    public VariableDeclaration(IdsList IL, Type T, Declaration nextD){
+
+    public VariableDeclaration(IdsList IL, Type T, Declaration nextD) {
         super(nextD);
         this.IL = IL;
         this.T = T;
     }
-    
-    public VariableDeclaration(IdsList IL, Type T){
+
+    public VariableDeclaration(IdsList IL, Type T) {
         super(null);
         this.IL = IL;
         this.T = T;

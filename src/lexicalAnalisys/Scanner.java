@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compiler_;
+package lexicalAnalisys;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import errorHandling.Error;
 
 /**
- *
- * @author unknown
+ * @author adolfo
+ * @author jorgec
  */
 public class Scanner {
 
@@ -31,7 +32,7 @@ public class Scanner {
         this.current_spelling = new StringBuffer("");
     }
 
-    static Token getToken() {
+    public static Token getToken() {
         if (!Scanner.tokens.isEmpty()) {
             Token token = Scanner.tokens.get(0);
             Scanner.tokens.remove(0);

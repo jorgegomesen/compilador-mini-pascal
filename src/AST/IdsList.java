@@ -5,26 +5,27 @@
  */
 package AST;
 
-import compiler_.Token;
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class IdsList extends Node {
+
     public Token T;
     public IdsList nextIL;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitIdsList(this);
     }
-    
-    public IdsList(Token T){
+
+    public IdsList(Token T) {
         this.T = T;
     }
-    
-    public IdsList(Token T, IdsList nextIL){
+
+    public IdsList(Token T, IdsList nextIL) {
         this.T = T;
         this.nextIL = nextIL;
     }

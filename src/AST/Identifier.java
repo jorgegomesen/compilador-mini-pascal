@@ -5,21 +5,22 @@
  */
 package AST;
 
-import compiler_.Token;
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class Identifier extends Node{
+public class Identifier extends Node {
+
     public Token T;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitIdentifier(this);
     }
-    
-    public Identifier(Token T){
+
+    public Identifier(Token T) {
         this.T = T;
     }
 }

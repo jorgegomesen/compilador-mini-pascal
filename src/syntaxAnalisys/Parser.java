@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compiler_;
+package syntaxAnalisys;
 
 import java.io.IOException;
+import lexicalAnalisys.Token;
+import lexicalAnalisys.Scanner;
+import errorHandling.Error;
+
 
 /**
- *
- * @author unknown
+ * @author adolfo
+ * @author jorgec
  */
 public class Parser {
 

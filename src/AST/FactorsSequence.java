@@ -8,20 +8,21 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class FactorsSequence extends Node {
+
     public Operator O;
     public Factor F;
     public FactorsSequence nextFS;
     public int type;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitFactorsSequence(this);
     }
-    
-    public FactorsSequence(Operator O, Factor F, FactorsSequence nextFS){
+
+    public FactorsSequence(Operator O, Factor F, FactorsSequence nextFS) {
         this.O = O;
         this.F = F;
         this.nextFS = nextFS;

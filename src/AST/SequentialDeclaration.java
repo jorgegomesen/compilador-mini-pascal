@@ -8,7 +8,7 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class SequentialDeclaration extends Declaration {

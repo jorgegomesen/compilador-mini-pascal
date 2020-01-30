@@ -8,17 +8,18 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class CompostCommand extends Command{
+public class CompostCommand extends Command {
+
     public CommandsList CL;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitCompostCommand(this);
     }
-    
-    public CompostCommand(CommandsList CL){
+
+    public CompostCommand(CommandsList CL) {
         this.CL = CL;
     }
 }

@@ -8,19 +8,19 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class Program extends Node {
+
     public Identifier I;
     public Body B;
-    
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitProgram(this);
     }
-    
-    public Program(Identifier I, Body B){
+
+    public Program(Identifier I, Body B) {
         this.I = I;
         this.B = B;
     }

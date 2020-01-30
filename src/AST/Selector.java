@@ -8,18 +8,19 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class Selector extends Node {
+
     public Expression E;
     public Selector nextS;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitSelector(this);
     }
-    
-    public Selector(Expression E, Selector nextS){
+
+    public Selector(Expression E, Selector nextS) {
         this.E = E;
         this.nextS = nextS;
     }

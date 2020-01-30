@@ -5,23 +5,24 @@
  */
 package AST;
 
-import compiler_.Token;
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class Variable extends Factor {
+
     public Token T;
     public Selector S;
     public Node declaration;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitVariable(this);
     }
-    
-    public Variable(Token T, Selector S){
+
+    public Variable(Token T, Selector S) {
         this.T = T;
         this.S = S;
     }

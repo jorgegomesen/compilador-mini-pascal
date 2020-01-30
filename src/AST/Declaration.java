@@ -8,21 +8,22 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class Declaration extends Node {
+
     public Declaration nextD;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitDeclaration(this);
     }
-    
-    public Declaration(){
+
+    public Declaration() {
         this.nextD = null;
     }
-    
-    public Declaration(Declaration nextD){
+
+    public Declaration(Declaration nextD) {
         this.nextD = nextD;
     }
 }

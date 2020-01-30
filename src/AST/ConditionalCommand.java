@@ -8,18 +8,19 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class ConditionalCommand extends Command{
+public class ConditionalCommand extends Command {
+
     public Expression E;
     public Command C1, C2;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitConditionalCommand(this);
     }
-    
-    public ConditionalCommand(Expression E, Command C1, Command C2){
+
+    public ConditionalCommand(Expression E, Command C1, Command C2) {
         this.E = E;
         this.C1 = C1;
         this.C2 = C2;

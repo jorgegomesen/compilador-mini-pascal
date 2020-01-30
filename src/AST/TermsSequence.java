@@ -8,23 +8,24 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class TermsSequence extends Node {
+
     public Operator O;
     public Term T;
     public TermsSequence nextTS;
     public int type;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitTermsSequence(this);
     }
-    
-    public TermsSequence(Operator O, Term T, TermsSequence nextTS){
+
+    public TermsSequence(Operator O, Term T, TermsSequence nextTS) {
         this.O = O;
         this.T = T;
         this.nextTS = nextTS;
     }
-    
+
 }

@@ -5,21 +5,22 @@
  */
 package AST;
 
-import compiler_.Token;
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class SimpleType extends Type{
+public class SimpleType extends Type {
+
     public Token T;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitSimpleType(this);
     }
-    
-    public SimpleType(Token T){
+
+    public SimpleType(Token T) {
         this.T = T;
     }
 }

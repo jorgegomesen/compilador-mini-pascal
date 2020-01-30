@@ -8,18 +8,19 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class CommandsList extends Node{
+public class CommandsList extends Node {
+
     public Command C;
     public CommandsList nextCL;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitCommandsList(this);
     }
-    
-    public CommandsList(Command C, CommandsList nextCL){
+
+    public CommandsList(Command C, CommandsList nextCL) {
         this.C = C;
         this.nextCL = nextCL;
     }

@@ -8,18 +8,19 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class Body extends Node {
+
     public Declaration D;
     public Command C;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitBody(this);
     }
-    
-    public Body(Declaration D, Command C){
+
+    public Body(Declaration D, Command C) {
         this.D = D;
         this.C = C;
     }

@@ -3,32 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package compiler_;
+package errorHandling;
 //import java.lang.RuntimeException;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author unknown
+ * @author adolfo
+ * @author jorgec
  */
 public class Error {
 
     static ArrayList<String> list = new ArrayList();
 
-    static void lexical(int row, int col, StringBuffer expected_token, StringBuffer current_token) {
+    public static void lexical(int row, int col, StringBuffer expected_token, StringBuffer current_token) {
         Error.list.add(String.format("\n\n++ Linha %d, Coluna %d ++\n- O analisador léxico identificou um erro. "
                 + "Esperava-se encontrar {%s}, porém, foi encontrado {%s}", row, col,
                 expected_token, current_token));
     }
 
-    static void syntatic(int row, int col, StringBuffer expected_token, StringBuffer current_token) {
+    public static void syntatic(int row, int col, StringBuffer expected_token, StringBuffer current_token) {
         Error.list.add(String.format("\n\n++ Linha %d, Coluna %d ++\n- O analisador sintático identificou um erro. "
                 + "Esperava-se encontrar {%s}, porém, foi encontrado {%s}", row, col,
                 expected_token, current_token));
     }
 
-    static void printErrors() {
+    public static void printErrors() {
         if (!Error.list.isEmpty()) {
             int list_length = Error.list.size();
             System.out.println("\n\n*******                     ERROS                       *******");
@@ -39,8 +39,12 @@ public class Error {
         }
     }
 
-    static void clearList() {
+    public static void clearList() {
         Error.list.clear();
+    }
+
+    public static ArrayList<String> getList() {
+        return Error.list;
     }
 
 }

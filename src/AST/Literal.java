@@ -5,21 +5,22 @@
  */
 package AST;
 
-import compiler_.Token;
+import lexicalAnalisys.Token;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class Literal extends Factor {
+
     public Token T;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitLiteral(this);
     }
-    
-    public Literal(Token T){
+
+    public Literal(Token T) {
         this.T = T;
     }
 }

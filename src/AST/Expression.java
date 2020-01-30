@@ -8,19 +8,20 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class Expression extends Factor{
+public class Expression extends Factor {
+
     public SimpleExpression SE1;
     public Operator O;
     public SimpleExpression SE2;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitExpression(this);
     }
-    
-    public Expression(SimpleExpression SE1, Operator O, SimpleExpression SE2){
+
+    public Expression(SimpleExpression SE1, Operator O, SimpleExpression SE2) {
         this.SE1 = SE1;
         this.O = O;
         this.SE2 = SE2;

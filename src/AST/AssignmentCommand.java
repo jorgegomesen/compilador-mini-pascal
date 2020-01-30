@@ -8,18 +8,19 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class AssignmentCommand extends Command{
+public class AssignmentCommand extends Command {
+
     public Variable V;
     public Expression E;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitAssignmentCommand(this);
     }
-    
-    public AssignmentCommand(Variable V, Expression E){
+
+    public AssignmentCommand(Variable V, Expression E) {
         this.V = V;
         this.E = E;
     }

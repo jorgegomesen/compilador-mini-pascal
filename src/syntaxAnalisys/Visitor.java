@@ -9,6 +9,7 @@ import AST.*;
 
 /**
  *
+ * @author adolfo
  * @author jorgec
  */
 public interface Visitor {

@@ -8,19 +8,20 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
-public class Term extends Node  {
+public class Term extends Node {
+
     public Factor F;
     public FactorsSequence FS;
     public int type;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitTerm(this);
     }
-    
-    public Term(Factor F, FactorsSequence FS){
+
+    public Term(Factor F, FactorsSequence FS) {
         this.F = F;
         this.FS = FS;
     }

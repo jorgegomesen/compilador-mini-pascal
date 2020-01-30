@@ -8,19 +8,20 @@ package AST;
 import syntaxAnalisys.Visitor;
 
 /**
- *
+ * @author adolfo
  * @author jorgec
  */
 public class SimpleExpression extends Node {
+
     public Term T;
     public TermsSequence TS;
     public int type;
-    
-    public void visit(Visitor v){
+
+    public void visit(Visitor v) {
         v.visitSimpleExpression(this);
     }
-    
-    public SimpleExpression(Term T, TermsSequence TS){
+
+    public SimpleExpression(Term T, TermsSequence TS) {
         this.T = T;
         this.TS = TS;
     }
