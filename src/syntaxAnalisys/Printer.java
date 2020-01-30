@@ -18,7 +18,8 @@ public class Printer implements Visitor {
 
     public int index = 0;
     public Stack<Boolean> level;
-    public String end[] = {"├$", "└$"};
+//    public String end[] = {"├", "└$"};
+    public String end[] = {"-", "--"};
 
     public Printer() {
         this.level = new Stack<>();
@@ -72,7 +73,7 @@ public class Printer implements Visitor {
     @Override
     public void visitAssignmentCommand(AssignmentCommand AC) {
         indent();
-        System.out.println("[COMANDO-DE-ATRIBUIÇÃO]");
+        System.out.println("[COMANDO-DE-ATRIBUICAO]");
         increment(false);
         if (AC.V != null) {
             AC.V.visit(this);
@@ -102,7 +103,7 @@ public class Printer implements Visitor {
         System.out.println("[COMANDO-CONDICIONAL]");
         increment(true);
         indent();
-        System.out.println("[EXPRESSÃO]");
+        System.out.println("[EXPRESSAO]");
         increment(false);
         if (CC.E != null) {
             CC.E.visit(this);
@@ -180,7 +181,7 @@ public class Printer implements Visitor {
     @Override
     public void visitVariableDeclaration(VariableDeclaration VD) {
         indent();
-        System.out.println("[DECLARAÇÃO-VARIÁVEL]");
+        System.out.println("[DECLARACAO-VARIAVEL]");
         increment(true);
         if (VD.T != null) {
             VD.T.visit(this);
